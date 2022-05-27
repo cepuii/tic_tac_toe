@@ -1,4 +1,4 @@
-package academy.devonline.tictactoe;
+package academy.devonline.tictactoe.component;
 
 public class DrawVerifier {
   
