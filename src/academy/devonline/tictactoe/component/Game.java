@@ -35,21 +35,21 @@ public class Game {
     while (true) {
       userMove.make(gameTable);
       printData.printGameTable(gameTable);
-      if (winnerVerifier.isUserWin()) {
+      if (winnerVerifier.isUserWin(gameTable)) {
         System.out.println("YOU WIN!!!");
         break;
       }
-      if (drawVerifier.isDraw()) {
+      if (drawVerifier.isDraw(gameTable)) {
         System.out.println("Sorry, DRAW");
         break;
       }
       computerMove.make(gameTable);
       printData.printGameTable(gameTable);
-      if (winnerVerifier.isComputerWin()) {
+      if (winnerVerifier.isComputerWin(gameTable)) {
         System.out.println("COMPUTER WIN!!!");
         break;
       }
-      if (drawVerifier.isDraw()) {
+      if (drawVerifier.isDraw(gameTable)) {
         System.out.println("Sorry, DRAW");
         break;
       }
