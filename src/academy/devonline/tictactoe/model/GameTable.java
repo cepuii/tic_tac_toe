@@ -14,6 +14,10 @@ public class GameTable {
     return table[cell.row()][cell.col()] == ' ';
   }
   
+  public char[][] getTable() {
+    return table;
+  }
+  
   public char getSign(final Cell cell) {
     return table[cell.row()][cell.col()];
   }
