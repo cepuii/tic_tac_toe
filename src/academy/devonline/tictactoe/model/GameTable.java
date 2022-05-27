@@ -1,5 +1,7 @@
 package academy.devonline.tictactoe.model;
 
+import java.util.Arrays;
+
 public class GameTable {
   
   private final char[][] table = {
@@ -8,16 +10,36 @@ public class GameTable {
       {' ', ' ', ' '}
   };
   
-  public boolean isEmpty(final Cell cell){
+  public boolean isEmpty(final Cell cell) {
     return table[cell.row()][cell.col()] == ' ';
   }
   
-  public char getSign(final Cell cell){
+  public char getSign(final Cell cell) {
     return table[cell.row()][cell.col()];
   }
   
-  public void setSign(final Cell cell, final char sign){
+  public void setSign(final Cell cell, final char sign) {
     table[cell.row()][cell.col()] = sign;
   }
-  record Cell(int row, int col){}
+  
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Table=");
+    for (char[] chars : table) {
+      sb.append(Arrays.toString(chars));
+    }
+    sb.append('}');
+    return sb.toString();
+  }
+  
+  record Cell(int row, int col) {
+    
+    @Override
+    public String toString() {
+      return "Cell{" +
+          "row=" + row +
+          ", col=" + col +
+          '}';
+    }
+  }
 }
