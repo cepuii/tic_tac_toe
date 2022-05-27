@@ -36,8 +36,8 @@ public class GameTable {
     return sb.toString();
   }
   
-  record Cell(int row, int col) {
-    
+  public record Cell(int row, int col) {
+  
     @Override
     public String toString() {
       return "Cell{" +
