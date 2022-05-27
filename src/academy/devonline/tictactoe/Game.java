@@ -1,5 +1,6 @@
 package academy.devonline.tictactoe;
 
+import academy.devonline.tictactoe.model.GameTable;
 import java.util.Random;
 
 public class Game {
