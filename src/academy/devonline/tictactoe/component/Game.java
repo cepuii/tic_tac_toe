@@ -9,18 +9,18 @@ public class Game {
   private final ComputerMove computerMove;
   private final UserMove userMove;
   private final WinnerVerifier winnerVerifier;
-  private final DrawVerifier drawVerifier;
+  private final CellVerifier cellVerifier;
   
   public Game(final PrintData printData,
       final ComputerMove computerMove,
       final UserMove userMove,
       final WinnerVerifier winnerVerifier,
-      final DrawVerifier drawVerifier) {
+      final CellVerifier cellVerifier) {
     this.printData = printData;
     this.computerMove = computerMove;
     this.userMove = userMove;
     this.winnerVerifier = winnerVerifier;
-    this.drawVerifier = drawVerifier;
+    this.cellVerifier = cellVerifier;
   }
   
   public void play() {
@@ -39,7 +39,7 @@ public class Game {
         System.out.println("YOU WIN!!!");
         break;
       }
-      if (drawVerifier.isDraw(gameTable)) {
+      if (cellVerifier.isCellsFilled(gameTable)) {
         System.out.println("Sorry, DRAW");
         break;
       }
@@ -49,7 +49,7 @@ public class Game {
         System.out.println("COMPUTER WIN!!!");
         break;
       }
-      if (drawVerifier.isDraw(gameTable)) {
+      if (cellVerifier.isCellsFilled(gameTable)) {
         System.out.println("Sorry, DRAW");
         break;
       }
