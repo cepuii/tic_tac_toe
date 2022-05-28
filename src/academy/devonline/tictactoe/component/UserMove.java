@@ -14,11 +14,11 @@ public class UserMove {
       if (line.length() != 1 || !Character.isDigit(line.charAt(0))) {
         continue;
       }
-      number = Integer.parseInt(line) - 1;
-      if (number < 0 || number > 8) {
+      number = Integer.parseInt(line);
+      if (number < 1 || number > 9) {
         continue;
       }
-      Cell cell = new Cell(number / 3, number % 3);
+      Cell cell = CellNumberConverter.convertToCell(number);
       if (!gameTable.isEmpty(cell)) {
         System.out.println("Can't make a move, because the cell is not free! Try again!");
       } else {

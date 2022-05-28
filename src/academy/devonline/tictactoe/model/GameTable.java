@@ -4,11 +4,19 @@ import java.util.Arrays;
 
 public class GameTable {
   
-  private final char[][] table = {
-      {' ', ' ', ' '},
-      {' ', ' ', ' '},
-      {' ', ' ', ' '}
-  };
+  private final char[][] table;
+  
+  public GameTable() {
+    table = new char[][]{
+        {' ', ' ', ' '},
+        {' ', ' ', ' '},
+        {' ', ' ', ' '}
+    };
+  }
+  
+  public GameTable(char[][] table) {
+    this.table = table;
+  }
   
   public boolean isEmpty(final Cell cell) {
     return table[cell.row()][cell.col()] == ' ';
