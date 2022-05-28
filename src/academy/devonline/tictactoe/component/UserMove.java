@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class UserMove {
   
+  private final CellNumberConverter cellNumberConverter;
+  
+  public UserMove(CellNumberConverter cellNumberConverter) {
+    this.cellNumberConverter = cellNumberConverter;
+  }
+  
   public void make(GameTable gameTable) {
     int number;
     while (true) {
@@ -18,7 +24,7 @@ public class UserMove {
       if (number < 1 || number > 9) {
         continue;
       }
-      Cell cell = CellNumberConverter.convertToCell(number);
+      Cell cell = cellNumberConverter.convertToCell(number);
       if (!gameTable.isEmpty(cell)) {
         System.out.println("Can't make a move, because the cell is not free! Try again!");
       } else {

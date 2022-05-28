@@ -4,8 +4,14 @@ import academy.devonline.tictactoe.model.GameTable;
 
 public class PrintData {
   
+  CellNumberConverter cellNumberConverter;
+  
+  public PrintData(CellNumberConverter cellNumberConverter) {
+    this.cellNumberConverter = cellNumberConverter;
+  }
+  
   public void printMappingTable() {
-    char[][] table = CellNumberConverter.getMappingTable();
+    char[][] table = cellNumberConverter.getMappingTable();
     printGameTable(new GameTable(table));
   }
   
