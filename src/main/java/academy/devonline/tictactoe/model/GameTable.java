@@ -45,7 +45,7 @@ public class GameTable {
   }
   
   public record Cell(int row, int col) {
-  
+    
     @Override
     public String toString() {
       return "Cell{" +

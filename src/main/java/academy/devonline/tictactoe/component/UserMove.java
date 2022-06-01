@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class UserMove {
   
-  private final CellNumberConverter cellNumberConverter;
+  private final academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter;
   
-  public UserMove(CellNumberConverter cellNumberConverter) {
+  public UserMove(academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter) {
     this.cellNumberConverter = cellNumberConverter;
   }
   
