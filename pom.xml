@@ -62,12 +62,7 @@
   </properties>
   <profiles>
     <profile>
-      <id>with-jre-windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
+      <id>with-jre</id>
       <build>
         <plugins>
           <plugin>
@@ -102,6 +97,7 @@
                 <configuration>
                   <descriptors>
                     <descriptor>src/assembly/descriptor-wind-with-jre.xml</descriptor>
+                    <descriptor>src/assembly/descriptor-unix-with-jre.xml</descriptor>
                   </descriptors>
                 </configuration>
               </execution>
@@ -111,12 +107,7 @@
       </build>
     </profile>
     <profile>
-      <id>windows-without-jre</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
+      <id>without-jre</id>
       <build>
         <plugins>
           <plugin>
@@ -132,85 +123,7 @@
                 <configuration>
                   <descriptors>
                     <descriptor>src/assembly/descriptor-windows.xml</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>unix-without-jre</id>
-      <activation>
-        <os>
-          <family>unix</family>
-        </os>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>${maven-assembly-plugin.version}</version>
-            <executions>
-              <execution>
-                <id>unix-makke-assembly</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <descriptors>
                     <descriptor>src/assembly/descriptor-unix.xml</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>unix-with-jre</id>
-      <activation>
-        <os>
-          <family>unix</family>
-        </os>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>${maven-antrun-plugin.version}</version>
-            <executions>
-              <execution>
-                <phase>package</phase>
-                <configuration>
-                  <target>
-                    <ant antFile="build-jre.xml">
-                      <target name="build-jre"/>
-                    </ant>
-                  </target>
-                </configuration>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>${maven-assembly-plugin.version}</version>
-            <executions>
-              <execution>
-                <id>unix-assembly-with-jre</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <descriptors>
-                    <descriptor>src/assembly/descriptor-unix-with-jre.xml</descriptor>
                   </descriptors>
                 </configuration>
               </execution>
