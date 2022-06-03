@@ -75,6 +75,7 @@
             <configuration>
               <descriptors>
                 <descriptor>src/assembly/descriptor-windows.xml</descriptor>
+                <descriptor>src/assembly/descriptor-wind-with-jre.xml</descriptor>
               </descriptors>
             </configuration>
             <executions>
@@ -105,6 +106,7 @@
             <configuration>
               <descriptors>
                 <descriptor>src/assembly/descriptor-unix.xml</descriptor>
+                <descriptor>src/assembly/descriptor-unix-with-jre.xml</descriptor>
               </descriptors>
             </configuration>
             <executions>
