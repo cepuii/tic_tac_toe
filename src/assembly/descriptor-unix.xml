@@ -29,6 +29,7 @@
         <include>*.sh</include>
       </includes>
       <lineEnding>unix</lineEnding>
+      <fileMode>755</fileMode>
     </fileSet>
   </fileSets>
 </assembly>
