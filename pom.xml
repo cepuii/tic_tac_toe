@@ -61,7 +61,7 @@
   </properties>
   <profiles>
     <profile>
-      <id>windows</id>
+      <id>with-jre-windows</id>
       <activation>
         <os>
           <family>windows</family>
@@ -72,19 +72,18 @@
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>${maven-assembly-plugin.version}</version>
-            <configuration>
-              <descriptors>
-                <descriptor>src/assembly/descriptor-windows.xml</descriptor>
-                <descriptor>src/assembly/descriptor-wind-with-jre.xml</descriptor>
-              </descriptors>
-            </configuration>
             <executions>
               <execution>
-                <id>make-assembly</id>
+                <id>make-assembly-with-jre</id>
                 <phase>package</phase>
                 <goals>
                   <goal>single</goal>
                 </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>src/assembly/descriptor-wind-with-jre.xml</descriptor>
+                  </descriptors>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -92,7 +91,37 @@
       </build>
     </profile>
     <profile>
-      <id>unix</id>
+      <id>windows-without-jre</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>${maven-assembly-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>make-assembly</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>src/assembly/descriptor-windows.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>unix-without-jre</id>
       <activation>
         <os>
           <family>unix</family>
@@ -103,19 +132,48 @@
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>${maven-assembly-plugin.version}</version>
-            <configuration>
-              <descriptors>
-                <descriptor>src/assembly/descriptor-unix.xml</descriptor>
-                <descriptor>src/assembly/descriptor-unix-with-jre.xml</descriptor>
-              </descriptors>
-            </configuration>
             <executions>
               <execution>
-                <id>make-assembly</id>
+                <id>unix-makke-assembly</id>
                 <phase>package</phase>
                 <goals>
                   <goal>single</goal>
                 </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>src/assembly/descriptor-unix.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>unix-with-jre</id>
+      <activation>
+        <os>
+          <family>unix</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>${maven-assembly-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>unix-assembly-with-jre</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>src/assembly/descriptor-unix-with-jre.xml</descriptor>
+                  </descriptors>
+                </configuration>
               </execution>
             </executions>
           </plugin>
