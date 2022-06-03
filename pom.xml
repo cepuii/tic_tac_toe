@@ -58,6 +58,7 @@
     <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
     <maven-project-info-reports-plugin.version>3.1.2</maven-project-info-reports-plugin.version>
     <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+    <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
   </properties>
   <profiles>
     <profile>
@@ -69,6 +70,25 @@
       </activation>
       <build>
         <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${maven-antrun-plugin.version}</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <configuration>
+                  <target>
+                    <ant antFile="build-jre.xml">
+                      <target name="build-jre"/>
+                    </ant>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>${maven-assembly-plugin.version}</version>
@@ -160,6 +180,25 @@
       <build>
         <plugins>
           <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${maven-antrun-plugin.version}</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <configuration>
+                  <target>
+                    <ant antFile="build-jre.xml">
+                      <target name="build-jre"/>
+                    </ant>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>${maven-assembly-plugin.version}</version>
             <executions>
@@ -233,5 +272,8 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+
+    </plugins>
   </build>
 </project>

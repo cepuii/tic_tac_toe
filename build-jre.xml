@@ -9,19 +9,15 @@
   <property name="target-tmp-dir"
     value=".tmp"/>
   <property name="jre-windows-dir-name"
-    value="jre-windows"/>
-  <property name="jre-macos-dir-name"
-    value="jre-macos"/>
+    value="jre-wind"/>
   <property name="jre-linux-dir-name"
-    value="jre-linux"/>
+    value="jre-unix"/>
 
   <!-- JDK download links -->
   <property name="jdk-windows-download-link"
-    value="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_windows-x64_bin.zip"/>
-  <property name="jdk-macos-download-link"
-    value="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_osx-x64_bin.tar.gz"/>
+    value="https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip"/>
   <property name="jdk-linux-download-link"
-    value="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz"/>
+    value="https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz"/>
 
   <property environment="env"/>
 
@@ -49,12 +45,12 @@
   </target>
 
   <target name="build-windows-jre-if-windows" if="isCurrentWindows">
-    <build-jre modulePath="${env.JAVA_HOME}/jmods/" destDir="jre-windows"/>
+    <build-jre modulePath="${env.JAVA_HOME}/jmods/" destDir="jre-wind"/>
   </target>
 
   <target name="build-windows-jre-if-not-windows" unless="isCurrentWindows">
     <antcall target="download-windows-jdk"/>
-    <build-jre modulePath="${target-tmp-dir}/jdk/jdk-windows/jdk-11.0.2/jmods"
+    <build-jre modulePath="${target-tmp-dir}/jdk/jdk-windows/jdk-17.0.2/jmods"
       destDir="jre-windows"/>
   </target>
 
@@ -91,7 +87,7 @@
 
   <target name="build-linux-jre-if-not-linux" unless="isCurrentLinux">
     <antcall target="download-linux-jdk"/>
-    <build-jre modulePath="${target-tmp-dir}/jdk/jdk-linux/jdk-11.0.2/jmods"
+    <build-jre modulePath="${target-tmp-dir}/jdk/jdk-linux/jdk-17.0.2/jmods"
       destDir="${jre-linux-dir-name}"/>
   </target>
 
