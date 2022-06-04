@@ -1,44 +1,46 @@
 package academy.devonline.tictactoe.model;
 
+import static academy.devonline.tictactoe.model.Sign.EMPTY;
+
 import java.util.Arrays;
 
 public class GameTable {
   
-  private final char[][] table;
+  private final Sign[][] table;
   
   public GameTable() {
-    table = new char[][]{
-        {' ', ' ', ' '},
-        {' ', ' ', ' '},
-        {' ', ' ', ' '}
+    table = new Sign[][]{
+        {EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY}
     };
   }
   
-  public GameTable(char[][] table) {
+  public GameTable(Sign[][] table) {
     this.table = table;
   }
   
   public boolean isEmpty(final Cell cell) {
-    return table[cell.getRow()][cell.getCol()] == ' ';
+    return table[cell.getRow()][cell.getCol()] == EMPTY;
   }
   
-  public char[][] getTable() {
+  public Sign[][] getTable() {
     return table;
   }
   
-  public char getSign(final Cell cell) {
+  public Sign getSign(final Cell cell) {
     return table[cell.getRow()][cell.getCol()];
   }
   
-  public void setSign(final Cell cell, final char sign) {
+  public void setSign(final Cell cell, final Sign sign) {
     table[cell.getRow()][cell.getCol()] = sign;
   }
   
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("Table=");
-    for (char[] chars : table) {
-      sb.append(Arrays.toString(chars));
+    for (Sign[] signs : table) {
+      sb.append(Arrays.toString(signs));
     }
     sb.append('}');
     return sb.toString();

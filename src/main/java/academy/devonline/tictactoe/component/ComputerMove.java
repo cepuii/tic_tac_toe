@@ -2,6 +2,7 @@ package academy.devonline.tictactoe.component;
 
 import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.Sign;
 import java.util.Random;
 
 public class ComputerMove {
@@ -13,7 +14,7 @@ public class ComputerMove {
       int col = number % 3;
       Cell cell = new Cell(row, col);
       if (gameTable.isEmpty(cell)) {
-        gameTable.setSign(cell, 'O');
+        gameTable.setSign(cell, Sign.O);
         return;
       }
     }

@@ -2,6 +2,7 @@ package academy.devonline.tictactoe.component;
 
 import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.Sign;
 import java.util.Scanner;
 
 public class UserMove {
@@ -28,7 +29,7 @@ public class UserMove {
       if (!gameTable.isEmpty(cell)) {
         System.out.println("Can't make a move, because the cell is not free! Try again!");
       } else {
-        gameTable.setSign(cell, 'X');
+        gameTable.setSign(cell, Sign.X);
         return;
       }
     }

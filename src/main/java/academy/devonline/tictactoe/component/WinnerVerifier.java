@@ -1,6 +1,7 @@
 package academy.devonline.tictactoe.component;
 
 import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.Sign;
 
 public class WinnerVerifier {
   
@@ -15,7 +16,7 @@ public class WinnerVerifier {
   }
   
   private boolean isWin(GameTable gameTable, String sign) {
-    char[][] table = gameTable.getTable();
+    Sign[][] table = gameTable.getTable();
     StringBuilder sbDiagonal = new StringBuilder();
     StringBuilder sbAnDiagonal = new StringBuilder();
     for (int i = 0; i < 3; i++) {
