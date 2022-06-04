@@ -14,7 +14,7 @@ public class UserMove implements Move {
   }
   
   @Override
-  public void make(GameTable gameTable) {
+  public void make(GameTable gameTable, Sign sign) {
     int number;
     while (true) {
       System.out.println("Please type number between 1 and 9:");
@@ -30,7 +30,7 @@ public class UserMove implements Move {
       if (!gameTable.isEmpty(cell)) {
         System.out.println("Can't make a move, because the cell is not free! Try again!");
       } else {
-        gameTable.setSign(cell, Sign.X);
+        gameTable.setSign(cell, sign);
         return;
       }
     }

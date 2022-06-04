@@ -18,7 +18,7 @@ public class Player {
   }
   
   public void makeMove(GameTable gameTable) {
-    move.make(gameTable);
+    move.make(gameTable, sign);
   }
   
   @Override

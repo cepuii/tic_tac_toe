@@ -8,14 +8,14 @@ import java.util.Random;
 public class ComputerMove implements Move {
   
   @Override
-  public void make(final GameTable gameTable) {
+  public void make(final GameTable gameTable, Sign sign) {
     while (true) {
       int number = new Random().nextInt(9);
       int row = number / 3;
       int col = number % 3;
       Cell cell = new Cell(row, col);
       if (gameTable.isEmpty(cell)) {
-        gameTable.setSign(cell, Sign.O);
+        gameTable.setSign(cell, sign);
         return;
       }
     }
