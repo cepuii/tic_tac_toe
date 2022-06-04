@@ -5,14 +5,14 @@ import academy.devonline.tictactoe.model.Sign;
 
 public class WinnerVerifier {
   
-  public boolean isUserWin(GameTable gameTable) {
+  public String isUserWin(GameTable gameTable) {
     String USER_WIN = "XXX";
-    return isWin(gameTable, USER_WIN);
+    return isWin(gameTable, USER_WIN) ? "YOU WIN!!!" : "";
   }
   
-  public boolean isComputerWin(GameTable gameTable) {
+  public String isComputerWin(GameTable gameTable) {
     String COMPUTER_WIN = "OOO";
-    return isWin(gameTable, COMPUTER_WIN);
+    return isWin(gameTable, COMPUTER_WIN) ? "COMPUTER WIN!!!" : "";
   }
   
   private boolean isWin(GameTable gameTable, String sign) {

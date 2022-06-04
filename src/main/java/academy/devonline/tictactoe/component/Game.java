@@ -32,26 +32,24 @@ public class Game {
       computerMove.make(gameTable);
       printData.printGameTable(gameTable);
     }
+    Move[] array = {userMove, computerMove};
+    int step = 0;
     while (true) {
-      userMove.make(gameTable);
+      array[step].make(gameTable);
       printData.printGameTable(gameTable);
-      if (winnerVerifier.isUserWin(gameTable)) {
-        System.out.println("YOU WIN!!!");
+      String result = winnerVerifier.isUserWin(gameTable);
+      if (!result.isEmpty()) {
+        System.out.println(result);
         break;
       }
       if (cellVerifier.isCellsFilled(gameTable)) {
         System.out.println("Sorry, DRAW");
         break;
       }
-      computerMove.make(gameTable);
-      printData.printGameTable(gameTable);
-      if (winnerVerifier.isComputerWin(gameTable)) {
-        System.out.println("COMPUTER WIN!!!");
-        break;
-      }
-      if (cellVerifier.isCellsFilled(gameTable)) {
-        System.out.println("Sorry, DRAW");
-        break;
+      if (step == 0) {
+        step = 1;
+      } else {
+        step = 0;
       }
     }
     System.out.println("GAME OVER.");
