@@ -1,4 +1,6 @@
 .idea
+.tmp
+target
 # Compiled class file
 *.class
 
