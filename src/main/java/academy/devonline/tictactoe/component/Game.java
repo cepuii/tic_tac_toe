@@ -5,17 +5,17 @@ import java.util.Random;
 
 public class Game {
   
-  private final academy.devonline.tictactoe.component.PrintData printData;
-  private final academy.devonline.tictactoe.component.ComputerMove computerMove;
-  private final academy.devonline.tictactoe.component.UserMove userMove;
-  private final academy.devonline.tictactoe.component.WinnerVerifier winnerVerifier;
-  private final academy.devonline.tictactoe.component.CellVerifier cellVerifier;
+  private final PrintData printData;
+  private final ComputerMove computerMove;
+  private final UserMove userMove;
+  private final WinnerVerifier winnerVerifier;
+  private final CellVerifier cellVerifier;
   
-  public Game(final academy.devonline.tictactoe.component.PrintData printData,
-      final academy.devonline.tictactoe.component.ComputerMove computerMove,
-      final academy.devonline.tictactoe.component.UserMove userMove,
-      final academy.devonline.tictactoe.component.WinnerVerifier winnerVerifier,
-      final academy.devonline.tictactoe.component.CellVerifier cellVerifier) {
+  public Game(final PrintData printData,
+      final ComputerMove computerMove,
+      final UserMove userMove,
+      final WinnerVerifier winnerVerifier,
+      final CellVerifier cellVerifier) {
     this.printData = printData;
     this.computerMove = computerMove;
     this.userMove = userMove;
