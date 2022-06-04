@@ -35,24 +35,26 @@ public class Game {
       printData.printGameTable(gameTable);
     }
     Player[] players = {new Player(Sign.X, userMove), new Player(Sign.O, computerMove)};
-    int step = 0;
+    
     while (true) {
-      players[step].makeMove(gameTable);
-      printData.printGameTable(gameTable);
-      if (winnerVerifier.isWinner(gameTable, players[step])) {
-        System.out.println(players[step] + " WIN!!!");
-        break;
-      }
-      if (cellVerifier.isCellsFilled(gameTable)) {
-        System.out.println("Sorry, DRAW");
-        break;
-      }
-      if (step == 0) {
-        step = 1;
-      } else {
-        step = 0;
+      for (Player player : players) {
+        printData.printGameTable(gameTable);
+        if (winnerVerifier.isWinner(gameTable, player)) {
+          System.out.println(player + " WIN!!!");
+          printGameOver();
+          return;
+        }
+        if (cellVerifier.isCellsFilled(gameTable)) {
+          System.out.println("Sorry, DRAW");
+          printGameOver();
+          return;
+        }
       }
     }
+    
+  }
+  
+  private void printGameOver() {
     System.out.println("GAME OVER.");
   }
   
