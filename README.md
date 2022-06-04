@@ -22,7 +22,7 @@ mvn -P without-jre clean package
 - Unzip the downloaded OpenJDK archive;
 - Configure the `PATH` environment variable:
     - Add `%JDK_HOME%\bin\` directory for Windows;
-    - Add `$JDK_HOME/bin/` directory for MacOS and Linux;
+    - Add `$JDK_HOME/bin/` directory for Linux;
 - Re-login or restart computer;
 - Unzip the Tic tac toe distribution:
   - Unzip `tic-tac-toe-${project.version}-windows.zip` for Windows;
@@ -46,14 +46,12 @@ mvn -P with-jre clean package
 
 - Use the following archives:
     - `target/tic-tac-toe-${project.version}-windows-with-jre.zip` for Windows
-    - `target/tic-tac-toe-${project.version}-macos-with-jre.tar.gz` for MacOS
     - `target/tic-tac-toe-${project.version}-linux-with-jre.tar.gz` for Linux
 
 ### Run instructions
 
 - Unzip the Tic tac toe distribution:
     - Unzip `tic-tac-toe-${project.version}-windows-with-jre.zip` for Windows;
-    - Unzip `tic-tac-toe-${project.version}-macos-with-jre.tar.gz` for MacOS;
     - Unzip `tic-tac-toe-${project.version}-linux-with-jre.tar.gz` for Linux;
 - Go to unzipped directory;
 - Run the game by double-click on the start script:
