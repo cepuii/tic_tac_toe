@@ -5,7 +5,7 @@ import academy.devonline.tictactoe.model.GameTable;
 import academy.devonline.tictactoe.model.Sign;
 import java.util.Random;
 
-public class ComputerMove {
+public class ComputerMove implements Move {
   
   public void make(final GameTable gameTable) {
     while (true) {

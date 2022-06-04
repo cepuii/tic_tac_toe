@@ -5,11 +5,11 @@ import academy.devonline.tictactoe.model.GameTable;
 import academy.devonline.tictactoe.model.Sign;
 import java.util.Scanner;
 
-public class UserMove {
+public class UserMove implements Move {
   
-  private final academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter;
+  private final CellNumberConverter cellNumberConverter;
   
-  public UserMove(academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter) {
+  public UserMove(CellNumberConverter cellNumberConverter) {
     this.cellNumberConverter = cellNumberConverter;
   }
   
