@@ -1,6 +1,8 @@
 package academy.devonline.tictactoe.component;
 
 import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.Player;
+import academy.devonline.tictactoe.model.Sign;
 import java.util.Random;
 
 public class Game {
@@ -32,14 +34,13 @@ public class Game {
       computerMove.make(gameTable);
       printData.printGameTable(gameTable);
     }
-    Move[] array = {userMove, computerMove};
+    Player[] players = {new Player(Sign.X, userMove), new Player(Sign.O, computerMove)};
     int step = 0;
     while (true) {
-      array[step].make(gameTable);
+      players[step].makeMove(gameTable);
       printData.printGameTable(gameTable);
-      String result = winnerVerifier.isUserWin(gameTable);
-      if (!result.isEmpty()) {
-        System.out.println(result);
+      if (winnerVerifier.isWinner(gameTable, players[step])) {
+        System.out.println(players[step] + " WIN!!!");
         break;
       }
       if (cellVerifier.isCellsFilled(gameTable)) {
