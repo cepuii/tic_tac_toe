@@ -1,6 +1,6 @@
 package academy.devonline.tictactoe.component;
 
-import academy.devonline.tictactoe.model.GameTable.Cell;
+import academy.devonline.tictactoe.model.Cell;
 
 public interface CellNumberConverter {
   

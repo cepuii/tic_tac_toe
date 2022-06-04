@@ -1,7 +1,7 @@
 package academy.devonline.tictactoe.component;
 
+import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
-import academy.devonline.tictactoe.model.GameTable.Cell;
 import java.util.Scanner;
 
 public class UserMove {

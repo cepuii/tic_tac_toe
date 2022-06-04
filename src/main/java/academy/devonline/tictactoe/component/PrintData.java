@@ -4,7 +4,7 @@ import academy.devonline.tictactoe.model.GameTable;
 
 public class PrintData {
   
-  academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter;
+  final academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter;
   
   public PrintData(academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter) {
     this.cellNumberConverter = cellNumberConverter;

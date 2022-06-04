@@ -19,7 +19,7 @@ public class GameTable {
   }
   
   public boolean isEmpty(final Cell cell) {
-    return table[cell.row()][cell.col()] == ' ';
+    return table[cell.getRow()][cell.getCol()] == ' ';
   }
   
   public char[][] getTable() {
@@ -27,11 +27,11 @@ public class GameTable {
   }
   
   public char getSign(final Cell cell) {
-    return table[cell.row()][cell.col()];
+    return table[cell.getRow()][cell.getCol()];
   }
   
   public void setSign(final Cell cell, final char sign) {
-    table[cell.row()][cell.col()] = sign;
+    table[cell.getRow()][cell.getCol()] = sign;
   }
   
   @Override
@@ -44,14 +44,5 @@ public class GameTable {
     return sb.toString();
   }
   
-  public record Cell(int row, int col) {
-    
-    @Override
-    public String toString() {
-      return "Cell{" +
-          "row=" + row +
-          ", col=" + col +
-          '}';
-    }
-  }
+  
 }
