@@ -8,5 +8,5 @@ public interface CellNumberConverter {
   
   Cell convertToCell(int number);
   
-  int toNumber(Cell cell);
+  char toNumber(Cell cell);
 }

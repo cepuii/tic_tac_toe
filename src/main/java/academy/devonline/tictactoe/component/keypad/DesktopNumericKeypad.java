@@ -27,7 +27,7 @@ public class DesktopNumericKeypad implements CellNumberConverter {
   }
   
   @Override
-  public int toNumber(Cell cell) {
+  public char toNumber(Cell cell) {
     return mappingTable[cell.getRow()][cell.getCol()];
   }
 }

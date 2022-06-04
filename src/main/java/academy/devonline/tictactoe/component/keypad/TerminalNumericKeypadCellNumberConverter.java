@@ -22,7 +22,7 @@ public class TerminalNumericKeypadCellNumberConverter implements CellNumberConve
   }
   
   @Override
-  public int toNumber(Cell cell) {
+  public char toNumber(Cell cell) {
     return (char) ('0' + ((cell.getRow() * 3) + (cell.getCol() + 1)));
   }
 }
