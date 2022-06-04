@@ -20,4 +20,9 @@ public class TerminalNumericKeypadCellNumberConverter implements CellNumberConve
   public Cell convertToCell(int number) {
     return new Cell(number / 3, number % 3);
   }
+  
+  @Override
+  public int toNumber(Cell cell) {
+    return (char) ('0' + ((cell.getRow() * 3) + (cell.getCol() + 1)));
+  }
 }

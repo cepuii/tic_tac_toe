@@ -1,38 +1,39 @@
 package academy.devonline.tictactoe.component;
 
+import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
-import academy.devonline.tictactoe.model.Sign;
 
 public class PrintData {
   
-  final academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter;
+  final CellNumberConverter cellNumberConverter;
   
-  public PrintData(academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter) {
+  public PrintData(CellNumberConverter cellNumberConverter) {
     this.cellNumberConverter = cellNumberConverter;
   }
   
   public void printMappingTable() {
-    char[][] table = cellNumberConverter.getMappingTable();
-    StringBuilder stringBuilder = new StringBuilder("-------------\n");
-    for (char[] chars : table) {
-      stringBuilder.append("| ").append(chars[0]).append(" | ")
-          .append(chars[1]).append(" | ")
-          .append(chars[2]).append(" |\n");
-      stringBuilder.append("-------------\n");
-    }
-    System.out.println(stringBuilder);
-    
+    print(((i, j) -> String.valueOf(cellNumberConverter.toNumber(new Cell(i, j)))));
   }
   
   public void printGameTable(final GameTable gameTable) {
-    Sign[][] table = gameTable.getTable();
+    print((i, j) -> String.valueOf(gameTable.getSign(new Cell(i, j))));
+  }
+  
+  private void print(final Lambda lambda) {
     StringBuilder stringBuilder = new StringBuilder("-------------\n");
-    for (Sign[] signs : table) {
-      stringBuilder.append("| ").append(signs[0]).append(" | ")
-          .append(signs[1]).append(" | ")
-          .append(signs[2]).append(" |\n");
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        stringBuilder.append("| ").append(lambda.getValue(i, j)).append(" ");
+      }
+      stringBuilder.append("|\n");
       stringBuilder.append("-------------\n");
     }
     System.out.println(stringBuilder);
+  }
+  
+  @FunctionalInterface
+  private interface Lambda {
+    
+    String getValue(int i, int j);
   }
 }

@@ -7,4 +7,6 @@ public interface CellNumberConverter {
   char[][] getMappingTable();
   
   Cell convertToCell(int number);
+  
+  int toNumber(Cell cell);
 }
