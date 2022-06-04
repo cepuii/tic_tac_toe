@@ -12,7 +12,7 @@ public class UserMove implements Move {
   public UserMove(CellNumberConverter cellNumberConverter) {
     this.cellNumberConverter = cellNumberConverter;
   }
-  
+  @Override
   public void make(GameTable gameTable) {
     int number;
     while (true) {
