@@ -2,26 +2,26 @@ package academy.devonline.tictactoe.component;
 
 import academy.devonline.tictactoe.model.GameTable;
 import academy.devonline.tictactoe.model.Player;
-import academy.devonline.tictactoe.model.Sign;
+import java.util.Random;
 
 public class Game {
   
   private final PrintData printData;
-  private final ComputerMove computerMove;
-  private final UserMove userMove;
+  private final Player player1;
+  private final Player player2;
   private final WinnerVerifier winnerVerifier;
   private final CellVerifier cellVerifier;
   
-  public Game(final PrintData printData,
-      final ComputerMove computerMove,
-      final UserMove userMove,
-      final WinnerVerifier winnerVerifier,
-      final CellVerifier cellVerifier) {
+  private final boolean canSecondPlayerMoveFirst;
+  
+  public Game(PrintData printData, Player player1, Player player2, WinnerVerifier winnerVerifier,
+      CellVerifier cellVerifier, boolean canSecondPlayerMoveFirst) {
     this.printData = printData;
-    this.computerMove = computerMove;
-    this.userMove = userMove;
+    this.player1 = player1;
+    this.player2 = player2;
     this.winnerVerifier = winnerVerifier;
     this.cellVerifier = cellVerifier;
+    this.canSecondPlayerMoveFirst = canSecondPlayerMoveFirst;
   }
   
   public void play() {
@@ -29,12 +29,12 @@ public class Game {
         "Use the following mapping table to specify a cell using numbers from 1 to 9:");
     printData.printMappingTable();
     final GameTable gameTable = new GameTable();
-//    if (new Random().nextBoolean()) {
-//      computerMove.make(gameTable, );
-//      printData.printGameTable(gameTable);
-//    }
-    Player[] players = {new Player(Sign.X, userMove), new Player(Sign.O, computerMove)};
-  
+    if (canSecondPlayerMoveFirst && new Random().nextBoolean()) {
+      player2.makeMove(gameTable);
+      printData.printGameTable(gameTable);
+    }
+    Player[] players = {player1, player2};
+    
     while (true) {
       for (Player player : players) {
         player.makeMove(gameTable);
