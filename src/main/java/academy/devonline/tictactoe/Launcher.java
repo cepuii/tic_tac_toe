@@ -11,7 +11,7 @@ public class Launcher {
 //    GameFactory gameFactory = new GameFactory(new String[]{"COMPUTER" ,"USER", "COMPUTER"});
 //    GameFactory gameFactory = new GameFactory(new String[]{"COMPUTER", "COMPUTER"});
     GameFactory gameFactory = new GameFactory(
-        new String[]{"COMPUTER", "adc", "as", "COMPUTER", "computer"});
+        new String[]{"COMPUTER", "adc", "as", "COMPUTER", "computer", "gui"});
     Game game = gameFactory.create();
     game.play();
   }

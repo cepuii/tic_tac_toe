@@ -1,8 +1,10 @@
 package academy.devonline.tictactoe.component;
 
+import static academy.devonline.tictactoe.model.PlayerType.COMPUTER;
 import static academy.devonline.tictactoe.model.PlayerType.USER;
 
 import academy.devonline.tictactoe.model.PlayerType;
+import academy.devonline.tictactoe.model.UserInterface;
 import java.util.Arrays;
 
 public class CommandLineArgumentParser {
@@ -13,48 +15,63 @@ public class CommandLineArgumentParser {
     this.args = args;
   }
   
-  public PlayerTypes parse() {
-    PlayerType[] playerTypes = new PlayerType[2];
-    if (args.length == 0) {
-      playerTypes[0] = USER;
-      playerTypes[1] = PlayerType.COMPUTER;
-    } else if (args.length == 1) {
-      playerTypes[0] = USER;
-      if (checkCommandLineArgument(args[0])) {
-        playerTypes[1] = PlayerType.valueOf(args[0].toUpperCase());
-      } else {
-        System.err.printf("Unsupported command line argument: %s\n", args[0]);
-        playerTypes[1] = PlayerType.COMPUTER;
-      }
-    } else {
-      for (String arg : args) {
-        if (checkCommandLineArgument(arg) && playerTypes[1] == null) {
-          if (playerTypes[0] == null) {
-            playerTypes[0] = PlayerType.valueOf(arg.toUpperCase());
-          } else {
-            playerTypes[1] = PlayerType.valueOf(arg.toUpperCase());
-          }
+  
+  public GameConfiguration parse() {
+    PlayerType firstPlayerType = null;
+    PlayerType secondPlayerType = null;
+    UserInterface userInterface = null;
+    for (String arg : args) {
+      if (checkArgumentOfPlayerTypes(arg) && secondPlayerType == null) {
+        if (firstPlayerType == null) {
+          firstPlayerType = PlayerType.valueOf(arg.toUpperCase());
         } else {
-          System.err.printf("Unsupported command line argument: %s\n", arg);
+          secondPlayerType = PlayerType.valueOf(arg.toUpperCase());
         }
+      } else if (checkArgumentOfUserInterface(arg)) {
+        userInterface = UserInterface.valueOf(arg.toUpperCase());
+      } else {
+        System.err.printf("Unsupported command line argument: %s\n", arg);
       }
     }
-    return new PlayerTypes(playerTypes[0], playerTypes[1]);
+    if (firstPlayerType == null) {
+      firstPlayerType = USER;
+      secondPlayerType = COMPUTER;
+    } else if (secondPlayerType == null) {
+      secondPlayerType = firstPlayerType;
+      firstPlayerType = USER;
+    }
+    if (userInterface == null) {
+      userInterface = UserInterface.CONSOLE;
+    }
+    return new GameConfiguration(firstPlayerType, secondPlayerType, userInterface);
   }
   
-  private boolean checkCommandLineArgument(String arg) {
+  private boolean checkArgumentOfUserInterface(String arg) {
+    return Arrays.stream(UserInterface.values())
+        .anyMatch(userInterface -> userInterface.name().equalsIgnoreCase(arg));
+  }
+  
+  private boolean checkArgumentOfPlayerTypes(String arg) {
     return Arrays.stream(PlayerType.values())
         .anyMatch(playerType -> playerType.name().equalsIgnoreCase(arg));
   }
   
-  static class PlayerTypes {
+  static class GameConfiguration {
     
     private final PlayerType player1Type;
     private final PlayerType player2Type;
     
-    private PlayerTypes(PlayerType player1Type, PlayerType player2Type) {
+    private final UserInterface userInterface;
+    
+    public UserInterface getUserInterface() {
+      return userInterface;
+    }
+    
+    private GameConfiguration(PlayerType player1Type, PlayerType player2Type,
+        UserInterface userInterface) {
       this.player1Type = player1Type;
       this.player2Type = player2Type;
+      this.userInterface = userInterface;
     }
     
     public PlayerType getPlayer1Type() {
