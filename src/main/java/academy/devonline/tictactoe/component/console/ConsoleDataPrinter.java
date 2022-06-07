@@ -1,9 +1,8 @@
 package academy.devonline.tictactoe.component.console;
 
-import academy.devonline.tictactoe.component.CellNumberConverter;
 import academy.devonline.tictactoe.component.DataPrinter;
-import academy.devonline.tictactoe.model.Cell;
-import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.game.Cell;
+import academy.devonline.tictactoe.model.game.GameTable;
 
 public class ConsoleDataPrinter implements DataPrinter {
   
@@ -14,6 +13,14 @@ public class ConsoleDataPrinter implements DataPrinter {
   }
   
   @Override
+  public void printInstruction() {
+    printInfoMessage(
+        "Use the following mapping table to specify a cell using numbers from 1 to 9:");
+    print(((i, j) ->
+        String.valueOf(cellNumberConverter.toNumber(new Cell(i, j)))));
+  }
+  
+  @Override
   public void printInfoMessage(String message) {
     System.out.println(message);
   }
@@ -21,10 +28,6 @@ public class ConsoleDataPrinter implements DataPrinter {
   @Override
   public void printErrorMessage(String message) {
     System.err.println(message);
-  }
-  
-  public void printMappingTable() {
-    print(((i, j) -> String.valueOf(cellNumberConverter.toNumber(new Cell(i, j)))));
   }
   
   public void printGameTable(final GameTable gameTable) {

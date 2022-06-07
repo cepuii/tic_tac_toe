@@ -1,17 +1,28 @@
-package academy.devonline.tictactoe.component;
+package academy.devonline.tictactoe;
 
-import static academy.devonline.tictactoe.model.PlayerType.USER;
-import static academy.devonline.tictactoe.model.Sign.O;
-import static academy.devonline.tictactoe.model.Sign.X;
+import static academy.devonline.tictactoe.model.config.PlayerType.USER;
+import static academy.devonline.tictactoe.model.game.Sign.O;
+import static academy.devonline.tictactoe.model.game.Sign.X;
 
-import academy.devonline.tictactoe.component.CommandLineArgumentParser.GameConfiguration;
+import academy.devonline.tictactoe.component.CellVerifier;
+import academy.devonline.tictactoe.component.ComputerMove;
+import academy.devonline.tictactoe.component.DataPrinter;
+import academy.devonline.tictactoe.component.Game;
+import academy.devonline.tictactoe.component.GameOverHandle;
+import academy.devonline.tictactoe.component.UserInputReader;
+import academy.devonline.tictactoe.component.UserMove;
+import academy.devonline.tictactoe.component.WinnerVerifier;
+import academy.devonline.tictactoe.component.config.CommandLineArgumentParser;
+import academy.devonline.tictactoe.component.config.CommandLineArgumentParser.GameConfiguration;
+import academy.devonline.tictactoe.component.console.CellNumberConverter;
 import academy.devonline.tictactoe.component.console.ConsoleDataPrinter;
+import academy.devonline.tictactoe.component.console.ConsoleGameOverHandle;
 import academy.devonline.tictactoe.component.console.ConsoleUserInputReader;
-import academy.devonline.tictactoe.component.keypad.DesktopNumericKeypad;
+import academy.devonline.tictactoe.component.console.keypad.DesktopNumericKeypad;
 import academy.devonline.tictactoe.component.swing.GameWindow;
-import academy.devonline.tictactoe.model.Player;
-import academy.devonline.tictactoe.model.PlayerType;
-import academy.devonline.tictactoe.model.UserInterface;
+import academy.devonline.tictactoe.model.config.PlayerType;
+import academy.devonline.tictactoe.model.config.UserInterface;
+import academy.devonline.tictactoe.model.game.Player;
 
 public class GameFactory {
   
@@ -31,14 +42,17 @@ public class GameFactory {
   public Game create() {
     final DataPrinter printer;
     final UserInputReader inputReader;
+    final GameOverHandle gameOverHandle;
     if (userInterface.ordinal() == 0) {
       GameWindow gameWindow = new GameWindow();
       printer = gameWindow;
       inputReader = gameWindow;
+      gameOverHandle = gameWindow;
     } else {
       final CellNumberConverter cellNumberConverter = new DesktopNumericKeypad();
       printer = new ConsoleDataPrinter(cellNumberConverter);
       inputReader = new ConsoleUserInputReader(cellNumberConverter, printer);
+      gameOverHandle = new ConsoleGameOverHandle(printer);
     }
     final Player player1;
     if (player1Type == USER) {
@@ -59,7 +73,7 @@ public class GameFactory {
         player2,
         new WinnerVerifier(),
         new CellVerifier(),
-        canSecondPlayerMakeFirstMove
+        gameOverHandle, canSecondPlayerMakeFirstMove
     );
   }
   
