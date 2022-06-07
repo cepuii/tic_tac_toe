@@ -5,7 +5,7 @@ import static academy.devonline.tictactoe.model.Sign.O;
 import static academy.devonline.tictactoe.model.Sign.X;
 
 import academy.devonline.tictactoe.component.console.ConsoleDataPrinter;
-import academy.devonline.tictactoe.component.console.UserMove;
+import academy.devonline.tictactoe.component.console.ConsoleUserInputReader;
 import academy.devonline.tictactoe.component.keypad.DesktopNumericKeypad;
 import academy.devonline.tictactoe.model.Player;
 import academy.devonline.tictactoe.model.PlayerType;
@@ -25,15 +25,17 @@ public class GameFactory {
   
   public Game create() {
     final CellNumberConverter cellNumberConverter = new DesktopNumericKeypad();
+    final DataPrinter printer = new ConsoleDataPrinter(cellNumberConverter);
+    final UserInputReader inputReader = new ConsoleUserInputReader(cellNumberConverter, printer);
     final Player player1;
     if (player1Type == USER) {
-      player1 = new Player(X, new UserMove(cellNumberConverter));
+      player1 = new Player(X, new UserMove(inputReader, printer));
     } else {
       player1 = new Player(X, new ComputerMove());
     }
     final Player player2;
     if (player2Type == USER) {
-      player2 = new Player(O, new UserMove(cellNumberConverter));
+      player2 = new Player(O, new UserMove(inputReader, printer));
     } else {
       player2 = new Player(O, new ComputerMove());
     }
