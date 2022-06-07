@@ -1,9 +1,10 @@
 package academy.devonline.tictactoe.component.swing;
 
 import academy.devonline.tictactoe.component.DataPrinter;
+import academy.devonline.tictactoe.component.GameOverHandle;
 import academy.devonline.tictactoe.component.UserInputReader;
-import academy.devonline.tictactoe.model.Cell;
-import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.game.Cell;
+import academy.devonline.tictactoe.model.game.GameTable;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,7 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class GameWindow extends JFrame implements DataPrinter, UserInputReader {
+public class GameWindow extends JFrame implements DataPrinter, UserInputReader, GameOverHandle {
   
   private static final int GAME_TABLE_SIZE = 3;
   
@@ -95,15 +96,15 @@ public class GameWindow extends JFrame implements DataPrinter, UserInputReader {
   }
   
   @Override
-  public void printMappingTable() {
-    //do nothing;
+  public void printInstruction() {
+    //instructions for game
   }
   
   @Override
   public void printGameTable(GameTable gameTable) {
     for (int i = 0; i < GAME_TABLE_SIZE; i++) {
       for (int j = 0; j < GAME_TABLE_SIZE; j++) {
-        cells[i][j].setText(gameTable.getSign(new Cell(i, j)).name());
+        cells[i][j].setText(gameTable.getSign(new Cell(i, j)).toString());
       }
     }
   }
@@ -119,5 +120,10 @@ public class GameWindow extends JFrame implements DataPrinter, UserInputReader {
       }
     }
     return clickedCell;
+  }
+  
+  @Override
+  public void gameOver() {
+    System.exit(0);
   }
 }

@@ -1,10 +1,10 @@
-package academy.devonline.tictactoe.component;
+package academy.devonline.tictactoe.component.config;
 
-import static academy.devonline.tictactoe.model.PlayerType.COMPUTER;
-import static academy.devonline.tictactoe.model.PlayerType.USER;
+import static academy.devonline.tictactoe.model.config.PlayerType.COMPUTER;
+import static academy.devonline.tictactoe.model.config.PlayerType.USER;
 
-import academy.devonline.tictactoe.model.PlayerType;
-import academy.devonline.tictactoe.model.UserInterface;
+import academy.devonline.tictactoe.model.config.PlayerType;
+import academy.devonline.tictactoe.model.config.UserInterface;
 import java.util.Arrays;
 
 public class CommandLineArgumentParser {
@@ -56,22 +56,22 @@ public class CommandLineArgumentParser {
         .anyMatch(playerType -> playerType.name().equalsIgnoreCase(arg));
   }
   
-  static class GameConfiguration {
+  public static class GameConfiguration {
     
     private final PlayerType player1Type;
     private final PlayerType player2Type;
     
     private final UserInterface userInterface;
     
-    public UserInterface getUserInterface() {
-      return userInterface;
-    }
-    
     private GameConfiguration(PlayerType player1Type, PlayerType player2Type,
         UserInterface userInterface) {
       this.player1Type = player1Type;
       this.player2Type = player2Type;
       this.userInterface = userInterface;
+    }
+    
+    public UserInterface getUserInterface() {
+      return userInterface;
     }
     
     public PlayerType getPlayer1Type() {
