@@ -15,15 +15,16 @@ public class DesktopNumericKeypad implements CellNumberConverter {
     return mappingTable;
   }
   
-  public Cell convertToCell(int number) {
+  @Override
+  public Cell toCell(final char number) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-        if (mappingTable[i][j] == Character.forDigit(number, 10)) {
+        if (mappingTable[i][j] == number) {
           return new Cell(i, j);
         }
       }
     }
-    return new Cell(0, 0);
+    return null;
   }
   
   @Override
