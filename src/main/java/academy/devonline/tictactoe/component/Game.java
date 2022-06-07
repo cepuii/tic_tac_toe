@@ -1,6 +1,5 @@
 package academy.devonline.tictactoe.component;
 
-import academy.devonline.tictactoe.component.console.ConsoleDataPrinter;
 import academy.devonline.tictactoe.model.GameTable;
 import academy.devonline.tictactoe.model.Player;
 import java.util.Random;
@@ -14,12 +13,12 @@ public class Game {
   private final CellVerifier cellVerifier;
   private final boolean canSecondPlayerMoveFirst;
   
-  public Game(ConsoleDataPrinter printData,
+  public Game(DataPrinter printData,
       Player player1, Player player2,
       WinnerVerifier winnerVerifier,
       CellVerifier cellVerifier,
       boolean canSecondPlayerMoveFirst) {
-    
+  
     this.dataPrinter = printData;
     this.player1 = player1;
     this.player2 = player2;
