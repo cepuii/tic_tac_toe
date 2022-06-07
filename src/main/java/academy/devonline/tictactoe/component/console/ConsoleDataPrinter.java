@@ -1,14 +1,26 @@
-package academy.devonline.tictactoe.component;
+package academy.devonline.tictactoe.component.console;
 
+import academy.devonline.tictactoe.component.CellNumberConverter;
+import academy.devonline.tictactoe.component.DataPrinter;
 import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
 
-public class PrintData {
+public class ConsoleDataPrinter implements DataPrinter {
   
   final CellNumberConverter cellNumberConverter;
   
-  public PrintData(CellNumberConverter cellNumberConverter) {
+  public ConsoleDataPrinter(CellNumberConverter cellNumberConverter) {
     this.cellNumberConverter = cellNumberConverter;
+  }
+  
+  @Override
+  public void printInfoMessage(String message) {
+    System.out.println(message);
+  }
+  
+  @Override
+  public void printErrorMessage(String message) {
+    System.err.println(message);
   }
   
   public void printMappingTable() {
