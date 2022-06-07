@@ -18,6 +18,7 @@ public class Player {
   }
   
   public void makeMove(GameTable gameTable) {
+    System.out.printf("Player \"%S\" moves\n", sign.name());
     move.make(gameTable, sign);
   }
   

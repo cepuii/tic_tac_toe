@@ -1,26 +1,18 @@
 package academy.devonline.tictactoe;
 
-import academy.devonline.tictactoe.component.CellVerifier;
-import academy.devonline.tictactoe.component.ComputerMove;
 import academy.devonline.tictactoe.component.Game;
-import academy.devonline.tictactoe.component.PrintData;
-import academy.devonline.tictactoe.component.UserMove;
-import academy.devonline.tictactoe.component.WinnerVerifier;
-import academy.devonline.tictactoe.component.keypad.DesktopNumericKeypad;
-import academy.devonline.tictactoe.model.Player;
-import academy.devonline.tictactoe.model.Sign;
+import academy.devonline.tictactoe.component.GameFactory;
 
 public class Launcher {
   
   public static void main(String[] args) {
-    DesktopNumericKeypad cellNumberConverter = new DesktopNumericKeypad();
-    Game game = new Game(
-        new PrintData(cellNumberConverter),
-        new Player(Sign.X, new UserMove(cellNumberConverter)),
-        new Player(Sign.O, new ComputerMove()),
-        new WinnerVerifier(),
-        new CellVerifier(),
-        true);
+//    GameFactory gameFactory = new GameFactory(args);
+//    GameFactory gameFactory = new GameFactory(new String[]{"user", "COMPUTER"});
+//    GameFactory gameFactory = new GameFactory(new String[]{"COMPUTER" ,"USER", "COMPUTER"});
+//    GameFactory gameFactory = new GameFactory(new String[]{"COMPUTER", "COMPUTER"});
+    GameFactory gameFactory = new GameFactory(
+        new String[]{"COMPUTER", "adc", "as", "COMPUTER", "computer"});
+    Game game = gameFactory.create();
     game.play();
   }
 }
