@@ -24,11 +24,18 @@ public class DesktopNumericKeypad implements CellNumberConverter {
         }
       }
     }
-    return null;
+    throw new IllegalArgumentException(
+        String.format("Something wrong Cell with %c isn't exist", number));
   }
   
   @Override
   public char toNumber(Cell cell) {
-    return mappingTable[cell.getRow()][cell.getCol()];
+    try {
+      return mappingTable[cell.getRow()][cell.getCol()];
+    } catch (IndexOutOfBoundsException e) {
+      throw new IllegalArgumentException(String.
+          format("Wrong row or col number %d, %d, bounds is from  [1;3]",
+              cell.getRow(), cell.getCol()));
+    }
   }
 }
