@@ -1,60 +1,61 @@
 package academy.devonline.tictactoe.component;
 
-import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.game.GameTable;
+import academy.devonline.tictactoe.model.game.Player;
 import java.util.Random;
 
 public class Game {
   
-  private final academy.devonline.tictactoe.component.PrintData printData;
-  private final academy.devonline.tictactoe.component.ComputerMove computerMove;
-  private final academy.devonline.tictactoe.component.UserMove userMove;
-  private final academy.devonline.tictactoe.component.WinnerVerifier winnerVerifier;
-  private final academy.devonline.tictactoe.component.CellVerifier cellVerifier;
+  private final DataPrinter dataPrinter;
+  private final Player player1;
+  private final Player player2;
+  private final WinnerVerifier winnerVerifier;
+  private final CellVerifier cellVerifier;
+  private final GameOverHandle gameOverHandle;
+  private final boolean canSecondPlayerMoveFirst;
   
-  public Game(final academy.devonline.tictactoe.component.PrintData printData,
-      final academy.devonline.tictactoe.component.ComputerMove computerMove,
-      final academy.devonline.tictactoe.component.UserMove userMove,
-      final academy.devonline.tictactoe.component.WinnerVerifier winnerVerifier,
-      final academy.devonline.tictactoe.component.CellVerifier cellVerifier) {
-    this.printData = printData;
-    this.computerMove = computerMove;
-    this.userMove = userMove;
+  public Game(DataPrinter printData,
+      Player player1, Player player2,
+      WinnerVerifier winnerVerifier,
+      CellVerifier cellVerifier,
+      GameOverHandle gameOverHandle, boolean canSecondPlayerMoveFirst) {
+    
+    this.dataPrinter = printData;
+    this.player1 = player1;
+    this.player2 = player2;
     this.winnerVerifier = winnerVerifier;
     this.cellVerifier = cellVerifier;
+    this.gameOverHandle = gameOverHandle;
+    this.canSecondPlayerMoveFirst = canSecondPlayerMoveFirst;
   }
   
   public void play() {
-    System.out.println(
-        "Use the following mapping table to specify a cell using numbers from 1 to 9:");
-    printData.printMappingTable();
-    final GameTable gameTable = new GameTable();
-    if (new Random().nextBoolean()) {
-      computerMove.make(gameTable);
-      printData.printGameTable(gameTable);
-    }
-    while (true) {
-      userMove.make(gameTable);
-      printData.printGameTable(gameTable);
-      if (winnerVerifier.isUserWin(gameTable)) {
-        System.out.println("YOU WIN!!!");
-        break;
-      }
-      if (cellVerifier.isCellsFilled(gameTable)) {
-        System.out.println("Sorry, DRAW");
-        break;
-      }
-      computerMove.make(gameTable);
-      printData.printGameTable(gameTable);
-      if (winnerVerifier.isComputerWin(gameTable)) {
-        System.out.println("COMPUTER WIN!!!");
-        break;
-      }
-      if (cellVerifier.isCellsFilled(gameTable)) {
-        System.out.println("Sorry, DRAW");
-        break;
-      }
-    }
-    System.out.println("GAME OVER.");
-  }
   
+    dataPrinter.printInstruction();
+    final GameTable gameTable = new GameTable();
+    
+    if (canSecondPlayerMoveFirst && new Random().nextBoolean()) {
+      player2.makeMove(gameTable);
+      dataPrinter.printGameTable(gameTable);
+    }
+    
+    Player[] players = {player1, player2};
+    
+    while (true) {
+      for (Player player : players) {
+        player.makeMove(gameTable);
+        dataPrinter.printGameTable(gameTable);
+        if (winnerVerifier.isWinner(gameTable, player)) {
+          dataPrinter.printInfoMessage(player + " WIN!!!");
+          gameOverHandle.gameOver();
+          return;
+        }
+        if (cellVerifier.isCellsFilled(gameTable)) {
+          dataPrinter.printInfoMessage("Sorry, DRAW");
+          gameOverHandle.gameOver();
+          return;
+        }
+      }
+    }
+  }
 }

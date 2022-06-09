@@ -209,6 +209,7 @@
           <proguardInclude>proguard-rules.conf</proguardInclude>
           <libs>
             <lib>${java.home}/jmods/java.base.jmod</lib>>
+            <lib>${java.home}/jmods/java.desktop.jmod</lib>>
           </libs>
         </configuration>
         <dependencies>

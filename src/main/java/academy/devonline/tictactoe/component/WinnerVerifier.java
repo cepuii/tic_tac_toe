@@ -1,40 +1,50 @@
 package academy.devonline.tictactoe.component;
 
-import academy.devonline.tictactoe.model.GameTable;
+import academy.devonline.tictactoe.model.game.Cell;
+import academy.devonline.tictactoe.model.game.GameTable;
+import academy.devonline.tictactoe.model.game.Player;
+import academy.devonline.tictactoe.model.game.Sign;
 
 public class WinnerVerifier {
   
-  public boolean isUserWin(GameTable gameTable) {
-    String USER_WIN = "XXX";
-    return isWin(gameTable, USER_WIN);
+  public boolean isWinner(final GameTable gameTable, final Player player) {
+    return isWinnerByRows(gameTable, player.getSign()) ||
+        isWinnerByCols(gameTable, player.getSign()) ||
+        isWinnerByMainDiagonal(gameTable, player.getSign()) ||
+        isWinnerBySecondaryDiagonal(gameTable, player.getSign());
   }
   
-  public boolean isComputerWin(GameTable gameTable) {
-    String COMPUTER_WIN = "OOO";
-    return isWin(gameTable, COMPUTER_WIN);
-  }
-  
-  private boolean isWin(GameTable gameTable, String sign) {
-    char[][] table = gameTable.getTable();
-    StringBuilder sbDiagonal = new StringBuilder();
-    StringBuilder sbAnDiagonal = new StringBuilder();
+  private boolean isWinnerByRows(final GameTable gameTable, final Sign sign) {
     for (int i = 0; i < 3; i++) {
-      StringBuilder sbVertical = new StringBuilder();
-      StringBuilder sbHorizontal = new StringBuilder();
-      for (int j = 0; j < 3; j++) {
-        sbVertical.append(table[j][i]);
-        sbHorizontal.append(table[i][j]);
-        if (i == j) {
-          sbDiagonal.append(table[i][j]);
-        }
-        if (i == 0 && j == 2 || i == 1 && j == 1 || i == 2 && j == 0) {
-          sbAnDiagonal.append(table[i][j]);
-        }
-      }
-      if (sign.contains(sbVertical) || sign.contains(sbHorizontal)) {
+      if (gameTable.getSign(new Cell(i, 0)) == gameTable.getSign(new Cell(i, 1)) &&
+          gameTable.getSign(new Cell(i, 1)) == gameTable.getSign(new Cell(i, 2)) &&
+          gameTable.getSign(new Cell(i, 2)) == sign) {
         return true;
       }
     }
-    return sign.contains(sbDiagonal) || sign.contains(sbAnDiagonal);
+    return false;
+  }
+  
+  private boolean isWinnerByCols(final GameTable gameTable, final Sign sign) {
+    for (int i = 0; i < 3; i++) {
+      if (gameTable.getSign(new Cell(0, i)) == gameTable.getSign(new Cell(1, i)) &&
+          gameTable.getSign(new Cell(1, i)) == gameTable.getSign(new Cell(2, i)) &&
+          gameTable.getSign(new Cell(2, i)) == sign) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  private boolean isWinnerByMainDiagonal(final GameTable gameTable, final Sign sign) {
+    return gameTable.getSign(new Cell(0, 0)) == gameTable.getSign(new Cell(1, 1)) &&
+        gameTable.getSign(new Cell(1, 1)) == gameTable.getSign(new Cell(2, 2)) &&
+        gameTable.getSign(new Cell(2, 2)) == sign;
+  }
+  
+  private boolean isWinnerBySecondaryDiagonal(final GameTable gameTable, final Sign sign) {
+    return gameTable.getSign(new Cell(2, 0)) == gameTable.getSign(new Cell(1, 1)) &&
+        gameTable.getSign(new Cell(1, 1)) == gameTable.getSign(new Cell(0, 2)) &&
+        gameTable.getSign(new Cell(0, 2)) == sign;
   }
 }

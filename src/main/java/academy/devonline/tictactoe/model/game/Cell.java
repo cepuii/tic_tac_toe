@@ -1,4 +1,4 @@
-package academy.devonline.tictactoe.model;
+package academy.devonline.tictactoe.model.game;
 
 public class Cell {
   

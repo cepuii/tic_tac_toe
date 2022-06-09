@@ -1,35 +1,29 @@
 package academy.devonline.tictactoe.component;
 
-import academy.devonline.tictactoe.model.Cell;
-import academy.devonline.tictactoe.model.GameTable;
-import java.util.Scanner;
+import academy.devonline.tictactoe.model.game.Cell;
+import academy.devonline.tictactoe.model.game.GameTable;
+import academy.devonline.tictactoe.model.game.Sign;
 
-public class UserMove {
+public class UserMove implements Move {
   
-  private final academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter;
+  private final UserInputReader reader;
+  private final DataPrinter printer;
   
-  public UserMove(academy.devonline.tictactoe.component.CellNumberConverter cellNumberConverter) {
-    this.cellNumberConverter = cellNumberConverter;
+  public UserMove(UserInputReader reader, DataPrinter printer) {
+    this.reader = reader;
+    this.printer = printer;
   }
   
-  public void make(GameTable gameTable) {
-    int number;
+  
+  @Override
+  public void make(final GameTable gameTable, final Sign sign) {
     while (true) {
-      System.out.println("Please type number between 1 and 9:");
-      String line = new Scanner(System.in).nextLine();
-      if (line.length() != 1 || !Character.isDigit(line.charAt(0))) {
-        continue;
-      }
-      number = Integer.parseInt(line);
-      if (number < 1 || number > 9) {
-        continue;
-      }
-      Cell cell = cellNumberConverter.convertToCell(number);
-      if (!gameTable.isEmpty(cell)) {
-        System.out.println("Can't make a move, because the cell is not free! Try again!");
-      } else {
-        gameTable.setSign(cell, 'X');
+      final Cell cell = reader.getUserInput();
+      if (gameTable.isEmpty(cell)) {
+        gameTable.setSign(cell, sign);
         return;
+      } else {
+        printer.printErrorMessage("Can't make a move, because the cell is not free! Try again");
       }
     }
   }
