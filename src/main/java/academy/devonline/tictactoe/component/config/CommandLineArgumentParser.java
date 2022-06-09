@@ -27,10 +27,10 @@ public class CommandLineArgumentParser {
         } else {
           secondPlayerType = PlayerType.valueOf(arg.toUpperCase());
         }
-      } else if (checkArgumentOfUserInterface(arg)) {
+      } else if (checkArgumentOfUserInterface(arg) && userInterface == null) {
         userInterface = UserInterface.valueOf(arg.toUpperCase());
       } else {
-        System.err.printf("Unsupported command line argument: %s\n", arg);
+        System.err.printf("Excessive argument all options filled: %s\n", arg);
       }
     }
     if (firstPlayerType == null) {
